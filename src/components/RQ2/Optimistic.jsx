@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { queryClient } from '../../main';
 
-const Optimistic = () => {
+const Optimistic = () => {  //
     const { data: posts } = useQuery({
         queryKey: ['posts'],
         queryFn: async () => {
@@ -11,7 +11,7 @@ const Optimistic = () => {
             return response;
         },
     });
-    const { mutate, isError, isPending, variables } = useMutation({
+    const { mutate, isError, isPending, variables } = useMutation({  // variables has data which we are submitting
         mutationFn: (newProduct) =>
             fetch('http://localhost:3000/posts', {
                 method: 'POST',
@@ -21,7 +21,7 @@ const Optimistic = () => {
                 },
             }),
         onSuccess: async () => {
-            return await queryClient.invalidateQueries({ queryKey: ['posts'] });
+            return await queryClient.invalidateQueries({ queryKey: ['posts'] }); // when updation or addition is successfull so again above query will run which has queryKey "posts"
         },
     });
 

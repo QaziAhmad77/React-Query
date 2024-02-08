@@ -22,7 +22,7 @@ const Dependant = () => {
     const postId = post?.id;
 
     const { data: comments, status } = useQuery({
-        queryKey: ['comments', post?.id],
+        queryKey: ['comments', post?.id],  // this query will not be run until the post.id is accurate value instead of null. And this is done by react query itself .
         queryFn: () => fetchCommentsByPostId(post.id),
         enabled: !!postId,
     });

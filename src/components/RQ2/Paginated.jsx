@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 import { useSearchParams } from 'react-router-dom';
 
 function Paginated() {
-    const [searchParams, setSearchParams] = useSearchParams({ skip: 0, limit: 4 });
+    const [searchParams, setSearchParams] = useSearchParams({ skip: 0, limit: 4 }); // it will persist the search bar mean when we refresh the page so query will not be lost due to useParams hook if it was useState then it will be lost.
 
     const skip = parseInt(searchParams.get('skip') || 0);
     const limit = parseInt(searchParams.get('limit') || 0);
@@ -28,7 +28,7 @@ function Paginated() {
             }
             return await fetch(url).then((res) => res.json());
         },
-        placeholderData: keepPreviousData,
+        placeholderData: keepPreviousData, // when we click on next button so first four products first remove and then show next 4 products but in between the space is empty so for that reason we are using placeholder data
         staleTime: 20000,
     });
 

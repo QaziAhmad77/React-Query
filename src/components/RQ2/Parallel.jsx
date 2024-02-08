@@ -16,7 +16,18 @@ const Parallel = () => {
     //     });
     // });
 
-    const userQueries = useQueries({
+    // const queries = useQueries([
+    //     { queryKey: 'posts', queryFn: fetchPosts },
+    //     { queryKey: 'users', queryFn: fetchUsers },
+    //     { queryKey: 'comments', queryFn: fetchComments },
+    //   ]);
+
+    //   // Accessing results of individual queries
+    //   const postsQuery = queries[0];
+    //   const usersQuery = queries[1];
+    //   const commentsQuery = queries[2];
+
+    const userQueries = useQueries({  // for parallel queries fetching we need to use useQueries
         queries: userIds.map((id) => {
             return {
                 queryKey: ['user', id],
